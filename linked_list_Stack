@@ -1,0 +1,66 @@
+#include<iostream>
+using namespace std;
+
+struct Node{
+    int data;
+    Node* link;
+};
+
+Node* top = NULL;
+
+bool isEmpty(){
+    if(top == NULL){
+        return true;
+    }else{
+        return false;
+    } 
+}
+
+void push (int value){
+
+    Node* temp = new Node;
+    temp->data = value;
+    temp->link = top;
+    top = temp;
+}
+
+void pop(){
+    if(isEmpty() == true){
+        cout<<"The stack is empty. "<<endl;
+    }else{
+    Node* temp = top;
+    top = top->link;
+    delete temp;
+    }
+}
+
+void showTop(){
+    if(isEmpty()){
+        cout<<"The stack is empty. "<<endl;
+    }else{
+        cout<<"The top value is "<<top->data<<endl;
+    }
+}
+
+void printList(){if(isEmpty()){
+        cout<<"The stack is empty. "<<endl;
+    }else{
+        Node* temp = top;
+        while(temp != NULL){
+            cout<<"The number is "<<temp->data<<endl;
+            temp = temp->link;
+        }
+    }
+}
+
+int main(){
+
+    push(5);
+    push(60);
+    push(55);
+    printList();
+    pop();
+    printList();
+
+    return 0;
+}
